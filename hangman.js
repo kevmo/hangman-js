@@ -37,6 +37,5 @@ guess.addEventListener('submit', function(e){
             letters[key].innerHTML = letter_guessed;
         }
     }
-
 })
 
