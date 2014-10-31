@@ -26,8 +26,17 @@ var guess = document.forms['guess_letter']
 guess.addEventListener('submit', function(e){
     e.preventDefault();
 
-    var guess = guess.single_letter_value;
+    var letter_guessed = guess.single_letter.value;
 
-    var
+    var letters = document.querySelectorAll('.letter');
+
+    console.log(letters);
+
+    for (var key in letters){
+        if (letters[key].classList[1] === letter_guessed){
+            letters[key].innerHTML = letter_guessed;
+        }
+    }
+
 })
 
