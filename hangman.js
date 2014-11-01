@@ -2,19 +2,19 @@ var words = ['slick', 'tick', 'trick', 'round', 'women', 'children', 'i'];
 
 var random_word = words[Math.floor(Math.random() * words.length)];
 
+var wrong_guesses = 0;
+
 // CREATE THE INPUT BOXES
 function createInputBoxes(random_word) {
 
-   var letters = random_word.split(''),
-       letter_container = document.getElementById('letter_container');
+   word_letters = random_word.split('');
+   var letter_container = document.getElementById('letter_container');
 
-   for (var i= 0; i < letters.length; i++){
+   for (var i= 0; i < word_letters.length; i++){
        var div = document.createElement('div');
-       div.className = 'letter ' + letters[i];
+       div.className = 'letter ' + word_letters[i];
        letter_container.appendChild(div)
    }
-
-   console.log(letters);
 }
 
 createInputBoxes(random_word);
@@ -28,6 +28,20 @@ guess.addEventListener('submit', function(e){
 
     var letter_guessed = guess.single_letter.value;
 
+    var wrong = true;
+
+    word_letters.forEach(function(letter){
+        if (letter === letter_guessed){
+            wrong = false;
+        }
+    })
+
+    if (wrong){
+        //increment
+        wrong_guesses++;
+    }
+
+
     var letters = document.querySelectorAll('.letter');
 
     console.log(letters);
@@ -38,4 +52,13 @@ guess.addEventListener('submit', function(e){
         }
     }
 })
+
+function draw_hangman(){
+    var hangman = d3.select('#hangman');
+
+    hangman.append("svg")
+        .attr("width", 200)
+        .attr("height", 200)
+
+}
 
